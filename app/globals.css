@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0e1116;
+  --surface: #161b22;
+  --surface-2: #1d242d;
+  --border: #2a323d;
+  --text: #e7e9ec;
+  --text-dim: #8d96a3;
+  --text-faint: #5c6675;
+  --accent: #c9a961;
+  --accent-soft: rgba(201, 169, 97, 0.14);
+  --pos: #4a9b8e;
+  --pos-soft: rgba(74, 155, 142, 0.14);
+  --warn: #d6a54c;
+  --warn-soft: rgba(214, 165, 76, 0.14);
+  --neg: #b5524a;
+  --neg-soft: rgba(181, 82, 74, 0.14);
+  --radius: 3px;
+  --maxw: 1200px;
+}
+
+:root.light {
+  --bg: #f7f6f3;
+  --surface: #ffffff;
+  --surface-2: #f0eee9;
+  --border: #ddd8cf;
+  --text: #191714;
+  --text-dim: #5c574d;
+  --text-faint: #948d80;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-plex-sans), sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.serif { font-family: var(--font-fraunces), serif; }
+.mono { font-family: var(--font-plex-mono), monospace; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--accent-soft); }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+h1, h2, h3 { font-family: var(--font-fraunces), serif; font-weight: 500; line-height: 1.15; }
+
+.eyebrow { font-size: 12px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+.lede { color: var(--text-dim); font-size: 16px; max-width: 640px; }
+
+.ph {
+  border: 1px dashed var(--text-faint); border-radius: var(--radius); padding: 1px 7px;
+  font-size: 11.5px; color: var(--text-faint); font-family: var(--font-plex-mono), monospace; margin-left: 6px; white-space: nowrap;
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: var(--radius);
+  font-size: 13.5px; font-weight: 500; cursor: pointer; border: 1px solid transparent; transition: all .15s; white-space: nowrap;
+}
+.btn-primary { background: var(--accent); color: #161207; }
+.btn-primary:hover { background: #dab86f; }
+.btn-ghost { border-color: var(--border); color: var(--text-dim); background: transparent; }
+.btn-ghost:hover { border-color: var(--text-faint); color: var(--text); }
+.btn-sm { padding: 6px 12px; font-size: 12.5px; }
+
+.card {
+  border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface);
+  padding: 22px; display: flex; flex-direction: column; gap: 10px;
+}
+.card-tag { display: inline-block; font-size: 11px; color: var(--accent); background: var(--accent-soft); padding: 3px 9px; border-radius: 2px; width: fit-content; letter-spacing: 0.02em; }
+
+.tag {
+  border: 1px solid var(--border); border-radius: 2px; padding: 5px 11px; font-size: 12.5px;
+  color: var(--text-dim); font-family: var(--font-plex-mono), monospace;
+}
+
+.status-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+.status-dot.pos { background: var(--pos); }
+.status-dot.warn { background: var(--warn); }
+.status-dot.neg { background: var(--neg); }
+.status-dot.build { background: var(--text-faint); }
+
+.status-pill { display:inline-flex; align-items:center; font-size: 11.5px; padding: 3px 9px; border-radius: 2px; }
+.status-pill.pos { background: var(--pos-soft); color: var(--pos); }
+.status-pill.warn { background: var(--warn-soft); color: var(--warn); }
+.status-pill.neg { background: var(--neg-soft); color: var(--neg); }
+.status-pill.build { background: var(--surface-2); color: var(--text-faint); }
+
+.side-card { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); padding: 20px; }
+.side-card h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-faint); margin-bottom: 12px; }
+.side-row { display: flex; justify-content: space-between; padding: 7px 0; font-size: 13px; border-bottom: 1px solid var(--border); gap: 12px; }
+.side-row:last-child { border-bottom: none; }
+.side-row span:first-child { color: var(--text-dim); }
+.side-row span:last-child { font-family: var(--font-plex-mono), monospace; font-size: 12.5px; text-align: right; }
+
+.skeleton {
+  background: linear-gradient(90deg, var(--surface) 0%, var(--surface-2) 50%, var(--surface) 100%);
+  background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: var(--radius);
+}
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.data-table th { text-align: left; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-faint); padding: 10px 12px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+table.data-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text-dim); vertical-align: top; }
+table.data-table tr:hover td { background: var(--surface-2); }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ============================================================
+   COCKPIT THEME — Dashboard Lab only. Overrides the shared CSS
+   variables so every existing component (cards, KPI cards, tags,
+   buttons, tables) automatically re-skins without needing its
+   own cockpit-specific styles.
+   ============================================================ */
+.cockpit {
+  --bg: #030711;
+  --surface: rgba(8, 24, 48, 0.6);
+  --surface-2: rgba(13, 36, 68, 0.7);
+  --border: rgba(41, 182, 246, 0.35);
+  --text: #eaf6ff;
+  --text-dim: #8fc6ea;
+  --text-faint: #3f6f96;
+  --accent: #29b6f6;
+  --accent-soft: rgba(41, 182, 246, 0.16);
+  --pos: #2be08a;
+  --pos-soft: rgba(43, 224, 138, 0.14);
+  --warn: #ffd54a;
+  --warn-soft: rgba(255, 213, 74, 0.14);
+  --neg: #ff5c6c;
+  --neg-soft: rgba(255, 92, 108, 0.14);
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(41, 182, 246, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 100% 100%, rgba(41, 182, 246, 0.06) 0%, transparent 55%),
+    var(--bg);
+  color: var(--text);
+  min-height: calc(100vh - 64px);
+}
+.cockpit .card, .cockpit .side-card {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 0 20px rgba(41, 182, 246, 0.06), inset 0 0 24px rgba(41, 182, 246, 0.03);
+  border-radius: 2px;
+  position: relative;
+  padding: 14px 16px;
+}
+.cockpit .card::before, .cockpit .card::after,
+.cockpit .side-card::before, .cockpit .side-card::after {
+  content: ""; position: absolute; width: 10px; height: 10px; pointer-events: none;
+}
+.cockpit .card::before, .cockpit .side-card::before { top: -1px; left: -1px; border-top: 2px solid var(--accent); border-left: 2px solid var(--accent); }
+.cockpit .card::after, .cockpit .side-card::after { bottom: -1px; right: -1px; border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent); }
+.cockpit select, .cockpit input {
+  background: var(--surface-2) !important; border-color: var(--border) !important; color: var(--text) !important;
+}
+.cockpit-header {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  padding: 12px 20px; border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(41,182,246,0.06), transparent);
+}
+.cockpit-tabs { display: flex; gap: 6px; overflow-x: auto; padding: 10px 20px; border-bottom: 1px solid var(--border); }
+.cockpit-tab {
+  font-size: 12px; padding: 6px 12px; border-radius: 2px; white-space: nowrap; border: 1px solid var(--border); color: var(--text-dim);
+}
+.cockpit-tab.active { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+.cockpit-screen { display: flex; flex-direction: column; height: calc(100vh - 64px - 49px); }
+.cockpit-body { flex: 1; min-height: 0; overflow-y: auto; padding: 16px 20px 20px; }
+
+@media print {
+  header, footer, .resume-noprint { display: none !important; }
+  body { background: #fff; color: #111; }
+  main { padding-top: 0 !important; }
+  .card, .side-card { border-color: #ccc !important; }
+}
