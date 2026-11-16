@@ -1,5 +1,5 @@
 export const profile = {
-  name: "Fahad Yahya Dahish",
+  name: "Fahad Dahish",
   role: "Senior Data Analyst",
   org: "Meena Health",
   orgNote: "a subsidiary of Tawuniya",

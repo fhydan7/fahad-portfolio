@@ -12,8 +12,8 @@ const plexMono = IBM_Plex_Mono({ subsets: ["latin"], variable: "--font-plex-mono
 export const metadata: Metadata = {
   metadataBase: new URL("https://example.com"),
   title: {
-    default: "Fahad Yahya Dahish — Data & Business Analytics | Strategy & Planning | Performance Management",
-    template: "%s · Fahad Yahya Dahish",
+    default: "Fahad Dahish — Data & Business Analytics | Strategy & Planning | Performance Management",
+    template: "%s · Fahad Dahish",
   },
   description:
     "Data and Business Analytics professional specializing in Strategy, Performance Management, Healthcare Analytics, KPI Development, Business Intelligence, and Executive Decision Support. Based in Riyadh, Saudi Arabia.",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     "SQL", "Data Visualization", "Saudi Arabia",
   ],
   openGraph: {
-    title: "Fahad Yahya Dahish — Turning Data into Business Decisions and Strategy into Measurable Performance.",
+    title: "Fahad Dahish — Turning Data into Business Decisions and Strategy into Measurable Performance.",
     description: "Data & Business Analytics | Strategy & Planning | Performance Management",
     type: "website",
   },

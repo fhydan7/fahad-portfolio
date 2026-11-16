@@ -10,7 +10,7 @@ export function DashboardHeader({
     <div className="cockpit-header">
       <div style={{ minWidth: 0 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <h1 style={{ fontSize: 19, fontWeight: 600, whiteSpace: "nowrap" }}>{title}</h1>
+          <h1 style={{ fontSize: 19, fontWeight: 600 }}>{title}</h1>
           <span
             title={businessQuestion}
             style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11, color: "var(--text-faint)", cursor: "help" }}
