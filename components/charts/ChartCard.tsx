@@ -4,7 +4,7 @@ import {
   FunnelChart, Funnel, LabelList, Cell,
 } from "recharts";
 
-const COLORS = ["#c9a961", "#4a9b8e", "#8d96a3", "#d6a54c", "#b5524a"];
+const COLORS = ["#2f8fe0", "#2bb39a", "#8d9bb0", "#e3a63f", "#e0675f"];
 
 function ChartShell({ title, meaning, height = 200, children }: { title: string; meaning?: string; height?: number; children: React.ReactNode }) {
   return (

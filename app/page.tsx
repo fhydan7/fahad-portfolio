@@ -1,142 +1,220 @@
 import Link from "next/link";
-import { profile, capabilities, timeline } from "@/lib/content/profile";
+import { profile, timeline } from "@/lib/content/profile";
 import { projects } from "@/lib/content/projects";
 import { useCases } from "@/lib/content/useCases";
 import { dashboardConfigs } from "@/lib/content/dashboardConfigs";
 
+const results = [
+  { num: "20%", title: "Higher operational efficiency", desc: "Found the trends and process gaps that were costing time, then fixed them with data." },
+  { num: "30%", title: "Faster reporting", desc: "Replaced manual reports with interactive Power BI dashboards across 5 business units." },
+  { num: "40%", title: "Fewer data errors", desc: "Built validation and quality checks so leadership can trust every number it sees." },
+  { num: "25%", title: "Faster, more accurate reports", desc: "Used SQL and advanced Excel to process datasets of more than 2 million records." },
+  { num: "12", title: "Projects delivered", desc: "Turned analysis into clear reports and dashboards that stakeholders acted on." },
+  { num: "6", title: "Core KPIs owned", desc: "Defined and tracked revenue growth, cost reduction and customer retention with cross-functional teams." },
+];
+
+const value = [
+  { n: "01", title: "Find what matters", desc: "I dig through large operational datasets to find the trends, gaps and opportunities a business can act on." },
+  { n: "02", title: "Build it to last", desc: "I define the KPIs, validate the data and build dashboards that business units keep using after launch." },
+  { n: "03", title: "Make the decision easy", desc: "I present findings in plain business language, so leaders know what to do next, not just what happened." },
+];
+
+const skills = [
+  { group: "BI & Reporting", items: ["Power BI", "Interactive dashboards", "KPI design", "Executive reporting"] },
+  { group: "Data & Analytics", items: ["SQL", "Advanced Excel", "R", "Data validation & quality"] },
+  { group: "Business", items: ["Requirements gathering", "Stakeholder presentations", "Performance management", "Healthcare analytics"] },
+  { group: "Also", items: ["Java (OOP)", "Web design", "Project management tools", "Arabic & English (fluent)"] },
+];
+
 export default function Home() {
+  const role = timeline[0];
   return (
     <>
-      <section style={{ padding: "80px 0 60px", borderBottom: "1px solid var(--border)" }}>
-        <div className="wrap" style={{ display: "grid", gridTemplateColumns: "1.3fr 1fr", gap: 56 }}>
+      {/* HERO */}
+      <section style={{ padding: "72px 0 56px", borderBottom: "1px solid var(--border)", background: "var(--surface)" }}>
+        <div className="wrap" style={{ display: "grid", gridTemplateColumns: "1.35fr 1fr", gap: 56, alignItems: "center" }}>
           <div>
-            <div className="eyebrow">{profile.positioning}</div>
-            <h1 style={{ fontSize: 42, maxWidth: 620, letterSpacing: "-0.01em" }}>{profile.headline}</h1>
-            <p className="lede" style={{ marginTop: 20, fontSize: 16.5 }}>{profile.subhead}</p>
+            <span className="badge-open">Open to new opportunities</span>
+            <h1 style={{ fontSize: 46, marginTop: 20, letterSpacing: "-0.02em", maxWidth: 640 }}>
+              I turn complex data into decisions leaders act on.
+            </h1>
+            <p className="lede" style={{ marginTop: 20, fontSize: 17, maxWidth: 600 }}>
+              Senior Data Analyst at {profile.org}, {profile.orgNote}, a healthcare group in Riyadh. I build Power BI dashboards, KPI frameworks and data pipelines that cut reporting time by 30% and data errors by 40%.
+            </p>
             <div style={{ display: "flex", gap: 12, marginTop: 30, flexWrap: "wrap" }}>
-              <Link href="/projects" className="btn btn-primary">Explore My Work</Link>
-              <Link href="/dashboard-lab" className="btn btn-ghost">View Dashboards</Link>
-              <a href="/Fahad_Yahya_Dahish_CV.pdf" download className="btn btn-ghost">Download CV</a>
+              <a href={profile.contact.cv} download className="btn btn-primary">Download CV</a>
+              <a href={`mailto:${profile.contact.email}?subject=Opportunity%20for%20Fahad%20Dahish`} className="btn btn-ghost">Email me</a>
+              <a href={profile.contact.linkedin} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">LinkedIn</a>
+            </div>
+            <div style={{ display: "flex", gap: 8, marginTop: 28, flexWrap: "wrap" }}>
+              {["Power BI", "SQL", "R", "Advanced Excel", "KPI Design", "Healthcare Analytics"].map((t) => <span key={t} className="tag">{t}</span>)}
             </div>
           </div>
-          <div className="card">
-            <div style={{ fontSize: 12, color: "var(--text-faint)", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 14 }}>At a Glance</div>
-            <div className="side-row"><span>Role</span><span>{profile.role}</span></div>
-            <div className="side-row"><span>Organization</span><span>{profile.org}</span></div>
-            <div className="side-row"><span>Location</span><span>{profile.location}</span></div>
-            <div className="side-row"><span>Languages</span><span>{profile.languages}</span></div>
-            <div className="side-row"><span>Core KPIs Tracked</span><span>6</span></div>
+          <div className="card" style={{ padding: 28, gap: 22 }}>
+            <div style={{ fontSize: 12, color: "var(--text-faint)", textTransform: "uppercase", letterSpacing: "0.08em" }}>Results at a glance</div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+              {[["30%", "faster reporting"], ["40%", "fewer data errors"], ["20%", "higher efficiency"], ["12", "projects delivered"]].map(([n, l]) => (
+                <div key={l}><div className="stat-num">{n}</div><div style={{ fontSize: 13, color: "var(--text-dim)", marginTop: 6 }}>{l}</div></div>
+              ))}
+            </div>
+            <div style={{ borderTop: "1px solid var(--border)", paddingTop: 14, fontSize: 13, color: "var(--text-dim)" }}>
+              {profile.role} · {profile.location} · {profile.languages}
+            </div>
           </div>
         </div>
       </section>
 
-      <div style={{ display: "grid", gridTemplateColumns: `repeat(${profile.metrics.length}, 1fr)`, borderBottom: "1px solid var(--border)" }}>
-        {profile.metrics.map((m, i) => (
-          <div key={i} style={{ padding: "24px 20px", borderRight: i < profile.metrics.length - 1 ? "1px solid var(--border)" : "none" }}>
-            <div className="mono" style={{ fontSize: 24, color: "var(--accent)" }}>{m.num}</div>
-            <div style={{ fontSize: 12, color: "var(--text-dim)", marginTop: 6 }}>{m.label}</div>
+      {/* RESULTS */}
+      <section className="wrap section">
+        <h2 className="section-title">Results I&apos;ve delivered</h2>
+        <p className="section-sub">Measured outcomes from my current role at Meena Health, not job descriptions.</p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 18, marginTop: 32 }}>
+          {results.map((r) => (
+            <div key={r.title} className="card" style={{ gap: 8 }}>
+              <div className="stat-num">{r.num}</div>
+              <div style={{ fontSize: 16, fontWeight: 600 }}>{r.title}</div>
+              <p style={{ fontSize: 13.5, color: "var(--text-dim)" }}>{r.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* HOW I CREATE VALUE */}
+      <section style={{ background: "var(--surface)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
+        <div className="wrap section">
+          <h2 className="section-title">How I create value</h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 32, marginTop: 32 }}>
+            {value.map((v) => (
+              <div key={v.n}>
+                <div className="mono" style={{ fontSize: 13, color: "var(--accent)" }}>{v.n}</div>
+                <h3 style={{ fontSize: 20, margin: "8px 0" }}>{v.title}</h3>
+                <p style={{ fontSize: 14.5, color: "var(--text-dim)" }}>{v.desc}</p>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-
-      <section className="wrap" style={{ padding: "72px 0" }}>
-        <div className="eyebrow">What I Bring</div>
-        <h2 style={{ fontSize: 26, marginBottom: 28 }}>Five capability areas, one decision chain</h2>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 1, background: "var(--border)", border: "1px solid var(--border)" }}>
-          {capabilities.map((c, i) => (
-            <Link key={i} href="/expertise" style={{ background: "var(--surface)", padding: "22px 18px", minHeight: 180, display: "flex", flexDirection: "column", gap: 8 }}>
-              <div className="mono" style={{ fontSize: 12, color: "var(--accent)" }}>0{i + 1}</div>
-              <div style={{ fontSize: 16, fontWeight: 600 }}>{c.title}</div>
-              <p style={{ fontSize: 12.5, color: "var(--text-dim)", flexGrow: 1 }}>{c.desc}</p>
-              <div style={{ fontSize: 12, color: "var(--text-faint)", borderTop: "1px solid var(--border)", paddingTop: 8 }}>View evidence →</div>
-            </Link>
-          ))}
         </div>
       </section>
 
-      <section className="wrap" style={{ padding: "0 0 72px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 24 }}>
-          <div><div className="eyebrow">Selected Work</div><h2 style={{ fontSize: 24 }}>Featured Projects</h2></div>
-          <Link href="/projects" className="btn btn-ghost btn-sm">All Projects</Link>
+      {/* EXPERIENCE */}
+      <section className="wrap section">
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 16, flexWrap: "wrap" }}>
+          <h2 className="section-title">Experience</h2>
+          <Link href="/career" className="btn btn-ghost btn-sm">Full experience</Link>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 18 }}>
-          {projects.map((p) => (
-            <Link key={p.slug} href={`/projects/${p.slug}`} className="card">
-              <span className="card-tag">{p.category}</span>
-              <h3 style={{ fontSize: 16, fontWeight: 600 }}>{p.title}</h3>
-              <p style={{ fontSize: 13, color: "var(--text-dim)" }}>{p.summary}</p>
-              <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 2 }}>
-                {p.kpis.map((k) => <span key={k} className="mono" style={{ fontSize: 12, color: "var(--text-dim)" }}>{k}</span>)}
-              </div>
-              <div style={{ marginTop: "auto", paddingTop: 10, borderTop: "1px solid var(--border)", fontSize: 12.5, display: "flex", justifyContent: "space-between" }}>
-                <span><span className={`status-dot ${p.status}`} />{p.statusLabel}</span><span style={{ color: "var(--text-faint)" }}>Case Study →</span>
-              </div>
-            </Link>
-          ))}
+        <div className="card" style={{ marginTop: 28, padding: 28, gap: 14 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
+            <div>
+              <h3 style={{ fontSize: 22 }}>{role.title}</h3>
+              <div style={{ color: "var(--accent)", fontWeight: 500, marginTop: 4 }}>{role.org}</div>
+            </div>
+            <div className="mono" style={{ fontSize: 13, color: "var(--text-dim)" }}>{role.period} · {role.location}</div>
+          </div>
+          <ul style={{ paddingLeft: 18, display: "grid", gap: 10, fontSize: 14.5, color: "var(--text-dim)" }}>
+            {role.responsibilities.map((r, i) => <li key={i}>{r}</li>)}
+          </ul>
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>{role.tools.map((t) => <span key={t} className="tag">{t}</span>)}</div>
         </div>
       </section>
 
-      <section className="wrap" style={{ padding: "0 0 72px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 24 }}>
+      {/* SKILLS */}
+      <section style={{ background: "var(--surface)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
+        <div className="wrap section">
+          <h2 className="section-title">Skills</h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 28, marginTop: 28 }}>
+            {skills.map((g) => (
+              <div key={g.group}>
+                <div style={{ fontSize: 12, color: "var(--text-faint)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 12 }}>{g.group}</div>
+                <ul style={{ listStyle: "none", display: "grid", gap: 8, fontSize: 14.5 }}>
+                  {g.items.map((i) => <li key={i}>{i}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PROOF OF WORK */}
+      <section className="wrap section">
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 16, flexWrap: "wrap" }}>
           <div>
-            <div className="eyebrow">Beyond Healthcare</div>
-            <h2 style={{ fontSize: 24 }}>Industry Use Cases</h2>
-            <p style={{ fontSize: 13, color: "var(--text-faint)", marginTop: 6, maxWidth: 560 }}>
-              Illustrative strategic, business, and data analysis case studies across ten different Saudi industries — not real client work, see each page for details.
-            </p>
+            <h2 className="section-title">See how I work</h2>
+            <p className="section-sub">Interactive dashboards built on synthetic demonstration data, so you can judge my design, KPI thinking and storytelling first-hand.</p>
           </div>
-          <Link href="/use-cases" className="btn btn-ghost btn-sm">All Use Cases</Link>
+          <Link href="/dashboard-lab" className="btn btn-primary btn-sm">Open all dashboards</Link>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 12 }}>
-          {useCases.map((u) => (
-            <Link key={u.slug} href={`/use-cases/${u.slug}`} className="card" style={{ gap: 6, padding: 16 }}>
-              <span className="card-tag" style={{ fontSize: 10 }}>{u.industry}</span>
-              <div style={{ fontSize: 13.5, fontWeight: 600 }}>{u.title}</div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="wrap" style={{ padding: "0 0 72px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 24 }}>
-          <div><div className="eyebrow">Dashboard Lab</div><h2 style={{ fontSize: 24 }}>See My Analytics in Action</h2></div>
-          <Link href="/dashboard-lab" className="btn btn-ghost btn-sm">Open Dashboard Lab</Link>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 18 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 18, marginTop: 28 }}>
           {dashboardConfigs.slice(0, 6).map((d) => (
             <Link key={d.slug} href={`/dashboard-lab/${d.slug}`} className="card">
-              <span className="card-tag">Dashboard</span>
               <h3 style={{ fontSize: 16, fontWeight: 600 }}>{d.title}</h3>
-              <p style={{ fontSize: 13, color: "var(--text-dim)" }}>{d.businessQuestion}</p>
-              <div style={{ marginTop: "auto", paddingTop: 10, borderTop: "1px solid var(--border)", fontSize: 12.5, color: "var(--accent)" }}>Open Dashboard →</div>
+              <p style={{ fontSize: 13.5, color: "var(--text-dim)" }}>{d.businessQuestion}</p>
+              <div style={{ marginTop: "auto", paddingTop: 10, fontSize: 13, color: "var(--accent)", fontWeight: 500 }}>Open dashboard →</div>
             </Link>
           ))}
         </div>
       </section>
 
-      <section className="wrap" style={{ padding: "0 0 72px" }}>
-        <div className="eyebrow">Career</div>
-        <h2 style={{ fontSize: 24, marginBottom: 28 }}>A short timeline</h2>
-        <div style={{ borderLeft: "1px solid var(--border)", marginLeft: 6 }}>
-          {timeline.map((t, i) => (
-            <div key={i} style={{ position: "relative", padding: "0 0 32px 32px" }}>
-              <span style={{ position: "absolute", left: -37, top: 4, width: 9, height: 9, borderRadius: "50%", background: "var(--accent)", border: "2px solid var(--bg)" }} />
-              <div className="mono" style={{ fontSize: 12, color: "var(--text-faint)" }}>{t.period}</div>
-              <h3 style={{ fontSize: 17, fontWeight: 600 }}>{t.title}</h3>
-              <div style={{ color: "var(--accent)", fontSize: 13.5, marginBottom: 6 }}>{t.org}</div>
-              <p style={{ color: "var(--text-dim)", fontSize: 13.5, maxWidth: 620 }}>{t.summary}</p>
-            </div>
+      <section className="wrap" style={{ paddingBottom: 72 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 16, flexWrap: "wrap" }}>
+          <div>
+            <h2 className="section-title">Range across industries</h2>
+            <p className="section-sub">Ten illustrative analyses (strategy, business and data) across Saudi retail, food, sport, government and more. Hypothetical, built to show how I think.</p>
+          </div>
+          <Link href="/use-cases" className="btn btn-ghost btn-sm">All use cases</Link>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 12, marginTop: 24 }}>
+          {useCases.map((u) => (
+            <Link key={u.slug} href={`/use-cases/${u.slug}`} className="card" style={{ gap: 6, padding: 16 }}>
+              <span className="card-tag" style={{ fontSize: 10.5 }}>{u.industry}</span>
+              <div style={{ fontSize: 14, fontWeight: 600 }}>{u.title}</div>
+            </Link>
           ))}
         </div>
       </section>
 
-      <section className="wrap" style={{ paddingBottom: 90 }}>
-        <div className="card" style={{ padding: 40, flexDirection: "row", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 20 }}>
+      {/* PROJECTS + EDUCATION */}
+      <section style={{ background: "var(--surface)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
+        <div className="wrap section" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }}>
           <div>
-            <h2 style={{ fontSize: 22, maxWidth: 480 }}>Hiring for a Data, Strategy, or Performance Management role?</h2>
-            <p style={{ color: "var(--text-dim)", fontSize: 13.5, marginTop: 8, maxWidth: 480 }}>The Recruiter View answers who I am, what I solve, and what evidence backs it up — in under a minute.</p>
+            <h2 className="section-title" style={{ marginBottom: 20 }}>Education</h2>
+            <div style={{ display: "grid", gap: 18 }}>
+              {profile.education.items.map((e) => (
+                <div key={e.degree} style={{ borderLeft: "3px solid var(--accent)", paddingLeft: 16 }}>
+                  <div style={{ fontWeight: 600 }}>{e.degree}</div>
+                  <div style={{ fontSize: 14, color: "var(--text-dim)" }}>{e.honor} · {e.school} · {e.detail}</div>
+                </div>
+              ))}
+            </div>
+            <h3 style={{ fontSize: 17, margin: "28px 0 12px" }}>Recognition</h3>
+            <ul style={{ paddingLeft: 18, display: "grid", gap: 6, fontSize: 14, color: "var(--text-dim)" }}>
+              {profile.honors.slice(0, 2).map((h) => <li key={h}>{h}</li>)}
+              <li>Published: The Impact of Conversational AI on Business Intelligence (2024)</li>
+            </ul>
           </div>
-          <Link href="/recruiter" className="btn btn-primary">Open Recruiter View</Link>
+          <div>
+            <h2 className="section-title" style={{ marginBottom: 20 }}>Selected projects</h2>
+            <div style={{ display: "grid", gap: 14 }}>
+              {projects.map((p) => (
+                <Link key={p.slug} href={`/projects/${p.slug}`} className="card" style={{ gap: 6 }}>
+                  <span className="card-tag">{p.category}</span>
+                  <div style={{ fontWeight: 600 }}>{p.title}</div>
+                  <p style={{ fontSize: 13.5, color: "var(--text-dim)" }}>{p.summary}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="wrap" style={{ padding: "72px 0 90px" }}>
+        <div className="card" style={{ padding: 44, alignItems: "center", textAlign: "center", gap: 16, background: "var(--accent)", borderColor: "var(--accent)", color: "var(--on-accent)" }}>
+          <h2 style={{ fontSize: 30, maxWidth: 620, color: "var(--on-accent)" }}>Looking for an analyst who ties data to business results?</h2>
+          <p style={{ maxWidth: 520, opacity: 0.9 }}>I&apos;m open to Senior Data Analyst, Business Intelligence and Strategy &amp; Performance roles. Let&apos;s talk.</p>
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center", marginTop: 8 }}>
+            <a href={`mailto:${profile.contact.email}?subject=Opportunity%20for%20Fahad%20Dahish`} className="btn" style={{ background: "var(--on-accent)", color: "var(--accent)" }}>Email me</a>
+            <a href={profile.contact.cv} download className="btn" style={{ border: "1px solid var(--on-accent)", color: "var(--on-accent)" }}>Download CV</a>
+            <a href={profile.contact.linkedin} target="_blank" rel="noopener noreferrer" className="btn" style={{ border: "1px solid var(--on-accent)", color: "var(--on-accent)" }}>LinkedIn</a>
+          </div>
         </div>
       </section>
     </>

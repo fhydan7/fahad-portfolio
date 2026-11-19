@@ -10,21 +10,21 @@ const plexSans = IBM_Plex_Sans({ subsets: ["latin"], variable: "--font-plex-sans
 const plexMono = IBM_Plex_Mono({ subsets: ["latin"], variable: "--font-plex-mono", weight: ["400", "500"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://example.com"),
+  metadataBase: new URL("https://fahad-portfolio-roan.vercel.app"),
   title: {
-    default: "Fahad Dahish — Data & Business Analytics | Strategy & Planning | Performance Management",
+    default: "Fahad Dahish — Senior Data Analyst | Power BI, SQL, Healthcare Analytics | Riyadh",
     template: "%s · Fahad Dahish",
   },
   description:
-    "Data and Business Analytics professional specializing in Strategy, Performance Management, Healthcare Analytics, KPI Development, Business Intelligence, and Executive Decision Support. Based in Riyadh, Saudi Arabia.",
+    "Senior Data Analyst in Riyadh. Power BI, SQL and R dashboards, KPI design and healthcare analytics: 30% faster reporting, 40% fewer data errors, 12 project implementations. Open to new opportunities.",
   keywords: [
     "Senior Data Analyst", "Business Analyst", "Business Analytics", "Strategy Analyst", "Strategic Planning",
     "Performance Management", "KPI Specialist", "Healthcare Analytics", "Business Intelligence", "Power BI",
     "SQL", "Data Visualization", "Saudi Arabia",
   ],
   openGraph: {
-    title: "Fahad Dahish — Turning Data into Business Decisions and Strategy into Measurable Performance.",
-    description: "Data & Business Analytics | Strategy & Planning | Performance Management",
+    title: "Fahad Dahish — Senior Data Analyst",
+    description: "Power BI, SQL and R. 30% faster reporting, 40% fewer data errors, 12 project implementations. Riyadh, Saudi Arabia.",
     type: "website",
   },
   robots: { index: true, follow: true },
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body className={`${fraunces.variable} ${plexSans.variable} ${plexMono.variable}`}>
         <ThemeProvider>
           <Nav />

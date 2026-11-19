@@ -64,7 +64,8 @@ export default function RecruiterPage() {
             <div className="side-row"><span>Phone</span><span>{profile.contact.phone}</span></div>
           </div>
           
-          <Link href="/resume" className="btn btn-primary" style={{ justifyContent: "center" }}>View Full Resume</Link>
+          <a href={profile.contact.cv} download className="btn btn-primary" style={{ justifyContent: "center" }}>Download CV</a>
+          <Link href="/resume" className="btn btn-ghost" style={{ justifyContent: "center" }}>View Full Resume</Link>
           <Link href="/contact" className="btn btn-primary" style={{ justifyContent: "center" }}>Get in Touch</Link>
         </div>
       </section>
